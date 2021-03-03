@@ -17,6 +17,7 @@ set showcmd
 set showmatch
 set backspace=2
 set nobackup
+set updatetime=500
 set incsearch
 set nohlsearch
 set hidden
@@ -34,9 +35,9 @@ nnoremap <C-l> <C-w>l
 let mapleader=" "
 nnoremap <leader>xf :e .<CR>
 nnoremap <leader>ct :silent !open -a Terminal.app .<CR>
-nnoremap <F5> :cp<CR>
-nnoremap <F6> :cn<CR>
-nnoremap <F7> :ccl<CR>
+nnoremap <F6> :cp<CR>
+nnoremap <F7> :cn<CR>
+nnoremap <F8> :ccl<CR>
 let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
 call plug#begin('~/.vim/plugged')
@@ -51,6 +52,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'prettier/vim-prettier', {
+  \ 'for': ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 call plug#end()
 
 " rooter
@@ -62,15 +65,22 @@ let g:solarized_termcolors=256
 set background=dark
 color solarized
 hi Normal guibg=none ctermbg=none
-hi Pmenu ctermbg=242 ctermfg=188
-hi PmenuSel ctermbg=237 ctermfg=188
+" hi Pmenu ctermbg=242 ctermfg=188
+" hi PmenuSel ctermbg=237 ctermfg=188
 
 " fzf
 nnoremap <leader>pf :GFiles --exclude-standard --cached --others<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>fr :History<CR>
 
+" Prettier
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_path = "/usr/local/bin/prettier"
+let g:prettier#quickfix_enabled = 0
+nmap <F5> <Plug>(Prettier)
+
 " coc.nvim
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> <leader>lp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
@@ -78,6 +88,12 @@ nmap <silent> <leader>ln <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
+" Symbol renaming.
+nmap <leader>lr <Plug>(coc-rename)
+" Format buffer
+nnoremap <leader>lf :call CocAction('format')<CR>
+" Organize imports
+autocmd FileType typescriptreact nnoremap <leader>lm :CocCommand tsserver.organizeImports<CR>
 " Show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -91,10 +107,6 @@ function! s:show_documentation()
 endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" Symbol renaming.
-nnoremap <leader>lr <Plug>(coc-rename)
-" Format buffer
-nnoremap <leader>lf :call CocAction('format')<CR>
 augroup mygroup
   autocmd!
   " Update signature help on jump placeholder.
