@@ -20,6 +20,7 @@ set nobackup
 set updatetime=500
 set incsearch
 set nohlsearch
+set ignorecase
 set hidden
 set smartcase
 set guicursor=
@@ -35,22 +36,27 @@ nnoremap <C-l> <C-w>l
 let mapleader=" "
 nnoremap <leader>xf :e .<CR>
 nnoremap <leader>ct :silent !open -a Terminal.app .<CR>
-nnoremap <F6> :cp<CR>
-nnoremap <F7> :cn<CR>
-nnoremap <F8> :ccl<CR>
+nnoremap <F6> :ccl<CR>
+nnoremap <F7> :cp<CR>
+nnoremap <F8> :cn<CR>
+inoremap jk <Esc>
 let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-rooter'
 Plug 'gruvbox-community/gruvbox'
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'jnurmine/Zenburn'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
+Plug 'tpope/vim-fugitive'
+" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
@@ -59,14 +65,15 @@ call plug#end()
 " rooter
 let g:rooter_silent_chdir = 1
 
-" gruvbox
+" Color scheme
+" set termguicolors
+color zenburn
+" color tender
 " color gruvbox
-let g:solarized_termcolors=256
-set background=dark
-color solarized
+" set background=light
+" set background=dark
+" color solarized8_low
 hi Normal guibg=none ctermbg=none
-" hi Pmenu ctermbg=242 ctermfg=188
-" hi PmenuSel ctermbg=237 ctermfg=188
 
 " fzf
 nnoremap <leader>pf :GFiles --exclude-standard --cached --others<CR>
@@ -94,6 +101,9 @@ nmap <leader>lr <Plug>(coc-rename)
 nnoremap <leader>lf :call CocAction('format')<CR>
 " Organize imports
 autocmd FileType typescriptreact nnoremap <leader>lm :CocCommand tsserver.organizeImports<CR>
+autocmd FileType typescript nnoremap <leader>lm :CocCommand tsserver.organizeImports<CR>
+autocmd FileType javascriptreact nnoremap <leader>lm :CocCommand tsserver.organizeImports<CR>
+autocmd FileType javascript nnoremap <leader>lm :CocCommand tsserver.organizeImports<CR>
 " Show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -124,3 +134,17 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+" set statusline^=%{coc#status()}
+
+" treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false -- Whether the query persists across vim sessions
+  }
+}
+EOF
