@@ -1,9 +1,6 @@
 {
     "suggest.noselect": false,
     "diagnostic.checkCurrentLine": true,
-    "diagnostic.virtualText": true,
     "diagnostic.enableSign": false,
-    "diagnostic.virtualTextAlignRight": true,
-    "diagnostic.enableMessage": "never",
     "pyright.trace.server": "verbose"
 }

@@ -21,8 +21,8 @@ set updatetime=500
 set incsearch
 set nohlsearch
 set ignorecase
-set hidden
 set smartcase
+set hidden
 set guicursor=
 set scrolloff=8
 set wildmenu
@@ -41,6 +41,7 @@ nnoremap <F7> :cp<CR>
 nnoremap <F8> :cn<CR>
 inoremap jk <Esc>
 let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
+nnoremap <leader>ct :!open -a Terminal .<CR>
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -60,6 +61,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 
 " rooter
@@ -137,14 +139,25 @@ omap ac <Plug>(coc-classobj-a)
 " set statusline^=%{coc#status()}
 
 " treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = { enable = true },
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false -- Whether the query persists across vim sessions
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   highlight = { enable = true },
+"   playground = {
+"     enable = true,
+"     disable = {},
+"     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+"     persist_queries = false -- Whether the query persists across vim sessions
+"   }
+" }
+" EOF
+
+" lualine
+lua << END
+require('lualine').setup{
+  options = { 
+    theme = "gruvbox",
+    component_separators = { left = '|', right = '|'},
+    section_separators = { left = '', right = ''}
   }
 }
-EOF
+END
