@@ -44,8 +44,6 @@ let g:completion_matching_strategy_list=['exact', 'substring', 'fuzzy']
 nnoremap <leader>ct :!open -a Terminal .<CR>
 
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-rooter'
 Plug 'gruvbox-community/gruvbox'
@@ -57,11 +55,12 @@ Plug 'jnurmine/Zenburn'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fugitive'
-" Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 " rooter
@@ -77,10 +76,12 @@ color zenburn
 " color solarized8_low
 hi Normal guibg=none ctermbg=none
 
-" fzf
-nnoremap <leader>pf :GFiles --exclude-standard --cached --others<CR>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>fr :History<CR>
+" Telescope
+nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fr <cmd>lua require('telescope.builtin').oldfiles()<cr>
+nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers({ sort_lastused = true })<cr>
+nnoremap <leader>h <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Prettier
 let g:prettier#autoformat = 0
@@ -138,26 +139,5 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 " set statusline^=%{coc#status()}
 
-" treesitter
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   highlight = { enable = true },
-"   playground = {
-"     enable = true,
-"     disable = {},
-"     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-"     persist_queries = false -- Whether the query persists across vim sessions
-"   }
-" }
-" EOF
-
-" lualine
-lua << END
-require('lualine').setup{
-  options = { 
-    theme = "gruvbox",
-    component_separators = { left = '|', right = '|'},
-    section_separators = { left = '', right = ''}
-  }
-}
-END
+" Load lua configs
+lua require('config')
