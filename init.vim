@@ -45,7 +45,8 @@ nnoremap <leader>ct :!open -a Terminal .<CR>
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'airblade/vim-rooter'
+Plug 'ahmedkhalf/project.nvim'
+Plug 'mhinz/vim-startify'
 Plug 'gruvbox-community/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'jiangmiao/auto-pairs'
@@ -63,9 +64,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
-" rooter
-let g:rooter_silent_chdir = 1
-
 " Color scheme
 " set termguicolors
 color zenburn
@@ -78,6 +76,7 @@ hi Normal guibg=none ctermbg=none
 
 " Telescope
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pp <cmd>lua require('telescope').extensions.projects.projects()<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers({ sort_lastused = true })<cr>
