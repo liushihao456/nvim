@@ -27,6 +27,7 @@ require('telescope').setup {
 -- project.nvim
 require('telescope').load_extension('projects')
 require("project_nvim").setup {
+    patterns = { ".git", ".svn" }
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
