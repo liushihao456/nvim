@@ -49,10 +49,13 @@ Plug 'ahmedkhalf/project.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'gruvbox-community/gruvbox'
 Plug 'lifepillar/vim-solarized8'
+Plug 'altercation/vim-colors-solarized'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'jnurmine/Zenburn'
+Plug 'jacoborus/tender.vim'
+Plug 'chriskempson/base16-vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'tpope/vim-fugitive'
@@ -67,12 +70,20 @@ call plug#end()
 
 " Color scheme
 " set termguicolors
-color zenburn
+" color base16-tomorrow-night-eighties
+
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256  " Access colors present in 256 colorspace
+    source ~/.vimrc_background
+endif
+
+" color zenburn
 " color tender
 " color gruvbox
 " set background=light
 " set background=dark
 " color solarized8_low
+" color solarized
 hi Normal guibg=none ctermbg=none
 
 " Telescope
