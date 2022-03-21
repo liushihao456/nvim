@@ -33,3 +33,5 @@ require("project_nvim").setup {
     -- refer to the configuration section below
 }
 -- vim.api.nvim_set_keymap('n', '<Leader>pp', [[<cmd>lua require('telescope').extensions.projects.projects()<cr>]], { noremap = true, silent = true })
+--
+require("telescope").load_extension("file_browser")

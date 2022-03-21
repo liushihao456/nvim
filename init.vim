@@ -34,7 +34,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 let mapleader=" "
-nnoremap <leader>xf :e `dirname %`<CR>
+nnoremap <leader>e :e `dirname %`<CR>
 nnoremap <leader>ct :silent !open -a Terminal.app .<CR>
 nnoremap <F6> :ccl<CR>
 nnoremap <F7> :cp<CR>
@@ -62,6 +62,7 @@ Plug 'prettier/vim-prettier', {
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 call plug#end()
 
 " Color scheme
@@ -77,6 +78,7 @@ hi Normal guibg=none ctermbg=none
 " Telescope
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>pp <cmd>lua require('telescope').extensions.projects.projects()<cr>
+nnoremap <leader>xf <cmd>lua require('telescope').extensions.file_browser.file_browser({ path = "%:p:h" })<cr>
 nnoremap <leader>fr <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>ps <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>b <cmd>lua require('telescope.builtin').buffers({ sort_lastused = true })<cr>
