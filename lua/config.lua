@@ -4,6 +4,11 @@ require('nvim-treesitter.configs').setup {
     highlight = { enable = true }
 }
 
+-- neogen
+require('neogen').setup {
+
+}
+
 -- lualine
 require('lualine').setup {
     options = { 
@@ -35,4 +40,15 @@ require("project_nvim").setup {
 }
 -- vim.api.nvim_set_keymap('n', '<Leader>pp', [[<cmd>lua require('telescope').extensions.projects.projects()<cr>]], { noremap = true, silent = true })
 --
+-- telescope file browser
 require("telescope").load_extension("file_browser")
+
+-- sidebar.nvim
+require('sidebar-nvim').setup {
+    hide_statusline = true,
+    bindings = { ["q"] = function() require("sidebar-nvim").close() end },
+    sections = { "datetime", "symbols", "diagnostics" },
+    symbols = {
+        icon = "ƒ"
+    }
+}

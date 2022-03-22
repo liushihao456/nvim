@@ -35,7 +35,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 let mapleader=" "
 nnoremap <leader>e :e `dirname %`<CR>
-nnoremap <leader>ct :silent !open -a Terminal.app .<CR>
+nnoremap <silent> <leader>ct !open -a Terminal.app .<CR>
 nnoremap <F6> :ccl<CR>
 nnoremap <F7> :cp<CR>
 nnoremap <F8> :cn<CR>
@@ -45,7 +45,9 @@ nnoremap <leader>ct :!open -a Terminal .<CR>
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sidebar-nvim/sidebar.nvim'
 Plug 'ahmedkhalf/project.nvim'
+Plug 'danymat/neogen'
 Plug 'mhinz/vim-startify'
 Plug 'gruvbox-community/gruvbox'
 Plug 'lifepillar/vim-solarized8'
@@ -66,6 +68,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'danilamihailov/beacon.nvim'
 call plug#end()
 
 " Color scheme
@@ -85,6 +88,10 @@ endif
 " color solarized8_low
 " color solarized
 hi Normal guibg=none ctermbg=none
+
+nnoremap <leader>li :SidebarNvimToggle<cr>
+" Neogen
+nnoremap <leader>d :Neogen<cr>
 
 " Telescope
 nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -150,6 +157,17 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 " set statusline^=%{coc#status()}
+
+" beacon.nvim
+highlight! link Beacon StatusLine
+let g:beacon_enable = 0
+let g:beacon_size = 20
+nmap <silent> n n:Beacon<cr>
+nmap <silent> N N:Beacon<cr>
+nmap <silent> * *:Beacon<cr>
+nmap <silent> # #:Beacon<cr>
+nmap <silent> <C-o> <C-o>:Beacon<cr>
+nmap <silent> <C-i> <C-i>:Beacon<cr>
 
 " Load lua configs
 lua require('config')
