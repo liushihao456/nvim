@@ -69,6 +69,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'danilamihailov/beacon.nvim'
+Plug 'tpope/vim-rsi'
 call plug#end()
 
 " Color scheme
