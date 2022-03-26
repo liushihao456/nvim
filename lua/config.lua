@@ -34,18 +34,23 @@ require('telescope').setup {
 require('telescope').load_extension('projects')
 require("project_nvim").setup {
     patterns = { ".git", ".svn" }
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
 }
--- vim.api.nvim_set_keymap('n', '<Leader>pp', [[<cmd>lua require('telescope').extensions.projects.projects()<cr>]], { noremap = true, silent = true })
---
+
 -- telescope file browser
 require("telescope").load_extension("file_browser")
 
+-- neo-tree
 require('neo-tree').setup({
+    close_if_last_window = true,
     enable_diagnostics = false,
+    enable_git_status = false,
+    filesystem = {
+        follow_current_file = true,
+    },
     window = {
-        width = 25
+        width = 25,
+        mappings = {
+            ["<tab>"] = "open"
+        }
     }
 })
