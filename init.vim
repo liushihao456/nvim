@@ -45,7 +45,6 @@ nnoremap <leader>ct :!open -a Terminal .<CR>
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sidebar-nvim/sidebar.nvim'
 Plug 'ahmedkhalf/project.nvim'
 Plug 'danymat/neogen'
 Plug 'mhinz/vim-startify'
@@ -70,6 +69,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'danilamihailov/beacon.nvim'
 Plug 'tpope/vim-rsi'
+Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x'}
+Plug 'MunifTanjim/nui.nvim'
 call plug#end()
 
 " Color scheme
@@ -90,7 +91,7 @@ endif
 " color solarized
 hi Normal guibg=none ctermbg=none
 
-nnoremap <leader>li :SidebarNvimToggle<cr>
+nnoremap <leader>z :Neotree<cr>
 " Neogen
 nnoremap <leader>d :Neogen<cr>
 

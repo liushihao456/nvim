@@ -43,12 +43,9 @@ require("project_nvim").setup {
 -- telescope file browser
 require("telescope").load_extension("file_browser")
 
--- sidebar.nvim
-require('sidebar-nvim').setup {
-    hide_statusline = true,
-    bindings = { ["q"] = function() require("sidebar-nvim").close() end },
-    sections = { "datetime", "symbols", "diagnostics" },
-    symbols = {
-        icon = "ƒ"
+require('neo-tree').setup({
+    enable_diagnostics = false,
+    window = {
+        width = 25
     }
-}
+})
