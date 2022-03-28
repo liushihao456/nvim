@@ -26,7 +26,8 @@ require('lualine').setup {
 -- telescope
 require('telescope').setup {
     defaults = {
-        layout_strategy = 'center'
+        layout_strategy = 'center',
+        layout_config = { width = 0.9 }
     }
 }
 
