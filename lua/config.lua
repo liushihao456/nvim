@@ -28,6 +28,12 @@ require('telescope').setup {
     defaults = {
         layout_strategy = 'center',
         layout_config = { width = 0.9 }
+    },
+    pickers = {
+        find_files = { hidden = true }
+    },
+    extensions = {
+        file_browser = { hidden = true }
     }
 }
 
