@@ -71,6 +71,7 @@ Plug 'danilamihailov/beacon.nvim'
 Plug 'tpope/vim-rsi'
 Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x'}
 Plug 'MunifTanjim/nui.nvim'
+Plug 'ggandor/lightspeed.nvim'
 call plug#end()
 
 " Color scheme
