@@ -35,6 +35,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 let mapleader=" "
 nnoremap <leader>e :e `dirname %`<CR>
+nnoremap <M-q> :q<CR>
 nnoremap <silent> <leader>ct !open -a Terminal.app .<CR>
 nnoremap <F6> :ccl<CR>
 nnoremap <F7> :cp<CR>
