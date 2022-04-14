@@ -73,6 +73,7 @@ Plug 'tpope/vim-rsi'
 Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x'}
 Plug 'MunifTanjim/nui.nvim'
 Plug 'ggandor/lightspeed.nvim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 " Color scheme
