@@ -36,6 +36,8 @@ nnoremap <C-l> <C-w>l
 let mapleader=" "
 nnoremap <leader>e :e `dirname %`<CR>
 nnoremap <M-q> :q<CR>
+nnoremap <M-`> :bd<CR>
+nnoremap <M-'> <C-^>
 nnoremap <silent> <leader>ct !open -a Terminal.app .<CR>
 nnoremap <F6> :ccl<CR>
 nnoremap <F7> :cp<CR>
@@ -46,7 +48,6 @@ nnoremap <leader>ct :!open -a Terminal .<CR>
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ahmedkhalf/project.nvim'
 Plug 'danymat/neogen'
 Plug 'mhinz/vim-startify'
 Plug 'gruvbox-community/gruvbox'
@@ -74,6 +75,7 @@ Plug 'nvim-neo-tree/neo-tree.nvim', {'branch': 'v2.x'}
 Plug 'MunifTanjim/nui.nvim'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'github/copilot.vim'
+Plug 'ahmedkhalf/project.nvim'
 call plug#end()
 
 " Color scheme
@@ -94,7 +96,12 @@ endif
 " color solarized
 hi Normal guibg=none ctermbg=none
 
+" vim-startify
+let g:startify_change_to_dir = 0
+
+" Neotree
 nnoremap <leader>z :Neotree<cr>
+
 " Neogen
 nnoremap <leader>d :Neogen<cr>
 
