@@ -1,6 +1,0 @@
-{
-    "suggest.noselect": false,
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.enableSign": false,
-    "pyright.trace.server": "verbose"
-}
